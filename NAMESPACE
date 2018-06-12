@@ -1,0 +1,12 @@
+useDynLib(EMMIX)
+export("EMMIX","EMMIX2",
+"init.mix","initEmmix","getICL",
+"emmixfit1","emmixfit2","emmixfit3",
+"rdmvn","rdmvt",
+"rdemmix","rdemmix2","rdemmix3",
+"ddmvn","ddmvt","ddmix",
+"error.rate","rand.index",
+"bootstrap","bootstrap.noc")
+
+importFrom(mvtnorm,rmvnorm)
+

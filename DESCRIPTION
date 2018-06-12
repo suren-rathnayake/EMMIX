@@ -1,0 +1,9 @@
+Package: EMMIX
+Title: The EM Algorithm and Mixture Models
+Description: Fit multivariate mixture models via the EM Algorithm. Multivariate distributions include Normal distribution, t-distribution, Skew Normal distribution and and Skew t-distribution. The emmix is an updated version of EMMIX with new features such as clustering the degenerated data and fitting skew mixture models. 
+Depends: mvtnorm
+Version: 1.0.2
+Author: Geoff McLachlan, Kui Wang, Angus Ng and David Peel. EMMIX was originally written in Fortran by David Peel(1999).
+Maintainer: Geoff McLachlan <g.mclachlan@uq.edu.au>
+License: file LICENCE
+LazyLoad: yes
