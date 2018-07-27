@@ -1,6 +1,6 @@
 EMMIX <- function (dat, g, distr = "mvn", ncov = 3, clust = NULL, init = NULL,
     itmax = 1000, epsilon = 1e-06, nkmeans = 0, nrandom = 10,
-    nhclust = FALSE, debug = TRUE, initloop = 20)
+    nhclust = FALSE, debug = FALSE, initloop = 20)
 {
     dat <- as.matrix(dat)
     if (!is.null(init) | !missing(init))

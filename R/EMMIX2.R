@@ -1,5 +1,5 @@
 EMMIX2 <- function (dat, g, init, nvcov = 0, neq = 0, itmax = 1000, epsilon = 1e-06,
-    debug = TRUE)
+    debug = FALSE)
 {
     dat <- as.matrix(dat)
     obj <- emmixfit3(dat, g, init, nvcov, neq, itmax, epsilon)
