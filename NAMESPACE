@@ -10,3 +10,5 @@ export("EMMIX","EMMIX2",
 
 importFrom(mvtnorm,rmvnorm)
 
+ importFrom("stats", "as.dist", "cor", "cutree", "hclust", "kmeans",
+             "rgamma")

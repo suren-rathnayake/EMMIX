@@ -53,5 +53,9 @@ EMMIX <- function (dat, g, distr = "mvn", ncov = 3, clust = NULL, init = NULL,
             cat("\n-----------------------\n")
         }
     }
+    ret$g <- g
+    ret$distr <- distr
+    ret$ncov <- ncov
+    ret$call <- match.call()
     ret
 }

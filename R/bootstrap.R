@@ -1,7 +1,13 @@
-bootstrap <- function (x, n, p, g, distr, ncov, popPAR, B = 99, replace = TRUE,
-    itmax = 1000, epsilon = 1e-05)
+bootstrap <- function (x, popPAR, B = 99, replace = TRUE,
+    itmax = 1000, epsilon = 1e-05, ...)
 {
     x <- as.matrix(x)
+    n <- nrow(x)
+    p <- ncol(x)
+    g <- popPAR$g
+    ncov <- popPAR$ncov
+    distr <- popPAR$distr
+
     if (missing(popPAR))
         stop("please run the function EMMIX() first")
     counter <- 0
@@ -35,10 +41,12 @@ bootstrap <- function (x, n, p, g, distr, ncov, popPAR, B = 99, replace = TRUE,
 }
 
 
-bootstrap.noc <- function (x, n, p, g1, g2, distr, ncov, B = 99, replace = TRUE,
+bootstrap.noc <- function (x, g1, g2, distr, ncov, B = 99, replace = TRUE,
     itmax = 1000, epsilon = 1e-05)
 {
     x <- as.matrix(x)
+    n <- nrow(x)
+    p <- ncol(x)
     if (g1 >= g2)
         stop("g1 should be less than g2")
     if (g1 < 1)
