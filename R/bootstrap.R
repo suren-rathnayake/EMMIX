@@ -42,7 +42,7 @@ bootstrap <- function (x, popPAR, B = 99, replace = TRUE,
 
 
 bootstrap.noc <- function (x, g1, g2, distr, ncov, B = 99, replace = TRUE,
-    itmax = 1000, epsilon = 1e-05)
+    itmax = 1000, epsilon = 1e-05, ...)
 {
     x <- as.matrix(x)
     n <- nrow(x)

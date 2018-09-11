@@ -5,11 +5,14 @@
 Mixture Analysis for a Range of Number of Components
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+A bootstrap approach to assess the null distribution (and hence the P-value) 
+of the log likelihood ratio test (\eqn{-2 \log (\lambda)}) to test 
+\eqn{H0: g = g0} versus \eqn{H1 : g = g0 + 1} in a given range of values
+of \eqn{g}. 
 }
 \usage{
 bootstrap.noc(x, g1, g2, distr, ncov, B = 99, replace = TRUE, 
-	itmax = 1000, epsilon = 1e-05)
+							itmax = 1000, epsilon = 1e-05, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -46,15 +49,38 @@ bootstrap.noc(x, g1, g2, distr, ncov, B = 99, replace = TRUE,
   If the relative difference in log-likelihood between two (consecutive)
   EM steps falls below this values, the EM steps terminates.
 }
+\item{...}{
+not used. Leaving it for backward compatibility.
+}
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+The distribution type, distr, is one of the following values: \code{"mvn"}
+for a multivariate normal, \code{"mvt"} for a multivariate t-distribution,
+\code{"msn"} for a multivariate skew normal distribution and \code{"mst"}
+for a multivariate skew t-distribution.
+
+The covariance matrix type, represented by the ncov parameter,
+may be any one of the following: \code{ncov = 1} for a common variance,
+\code{ncov = 2} for a common diagonal variance, \code{ncov = 3} for a general
+variance, \code{ncov = 4} for a diagonal variance, \code{ncov = 5} for
+\eqn{\sigma(h) * I(p)} (diagonal covariance with same identical diagonal
+element values).
+
+When replace is FALSE, parametric bootstrap is used;
+otherwise replacement method is used.
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
+A list containing 
+
+\code{vlk}: log-likelihood values of fitted models 
+with components from \code{g1} to \code{g2},  
+
+\code{pvalue}: P-values for successive 
+\eqn{H0: g = g0} versus \eqn{H1 : g = g0 + 1} tests,
+and
+
+\code{`ret`}: bootstrap replications of \eqn{-2 \log (\lambda)}.
+
 %% ...
 }
 \references{
@@ -73,11 +99,9 @@ bootstrap.noc(x, g1, g2, distr, ncov, B = 99, replace = TRUE,
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
 
-## The function is currently defined as
+out <- bootstrap.noc(x = iris[, -5], g1 = 3, g2 = 6, distr = "mvn", ncov = 3, 
+										B = 19, replace = TRUE, itmax = 1000, epsilon = 1e-5)
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
