@@ -5,7 +5,7 @@ getICL <- function (x, n, p, g, distr, ncov, pro, mu, sigma, dof, delta,
     loglik <- 0
     nc = 0
     nn <- sum(clust > 0)
-    lnden <- (as.matrix((ddmix(x, n, p, g, distr, mu, sigma,
+    lnden <- (as.matrix((ddmix(x, g, distr, mu, sigma,
         dof, delta))))
     for (h in 1:g) loglik = loglik + sum(ifelse(clust == h, log(pro[h]) +
         lnden[, h], 0))

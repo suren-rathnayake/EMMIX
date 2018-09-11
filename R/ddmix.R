@@ -1,7 +1,10 @@
-ddmix <- function (dat, n, p, g, distr, mu, sigma, dof = NULL, delta = NULL)
+ddmix <- function (dat, g, distr, mu, sigma, dof = NULL, delta = NULL, ...)
 {
+    n <- nrow(dat)
+    p <- ncol(dat)
+
     if (is.null(dof))
-        dof <- rep(4, g)
+        dof <- rep(1000, g)
     if (is.null(delta))
         delta <- array(0, c(p, g))
     ndist <- switch(tolower(distr), mvn = 1, mvt = 2, msn = 3,
