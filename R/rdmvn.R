@@ -24,29 +24,41 @@ rdmvt <- function (n, mean, cov, nu)
 
 rdemmix <- function (nvect, p, g, distr, mu, sigma, dof = NULL, delta = NULL)
 {
-    if (length(c(nvect)) != g)
-        stop("nvect should be a vector")
-    ndist <- switch(tolower(distr), mvn = 1, mvt = 2, msn = 3,
-        mst = 4, 5)
-    if (ndist > 4)
-        stop("the model specified is not available yet")
-    if (is.null(dof))
-        dof <- rep(4, g)
-    if (is.null(delta))
-        delta <- array(0, c(p, g))
-    if (length(c(mu)) != (p * g))
-        stop(paste("mu should be a ", p, "by", g, "matrix!"))
-    if (length(c(sigma)) != (p * p * g))
-        stop(paste("sigma should be a ", p, "by", p, "by", g,
+
+  if ((distr == "mvt") || (distr == "mst")) {
+    if (is.null(dof)) {
+      stop("The dof needs to specified for mvt and mst mixture models.")
+    }
+
+    if (is.null(delta)) {
+      stop("The delta needs to specified for mvt and mst mixture models.")
+    }
+  }
+
+  if (length(c(nvect)) != g)
+      stop("nvect should be a vector")
+  ndist <- switch(tolower(distr), mvn = 1, mvt = 2, msn = 3,
+      mst = 4, 5)
+  if (ndist > 4)
+      stop("the model specified is not available yet")
+
+  # if (is.null(dof))
+  #     dof <- rep(4, g)
+  # if (is.null(delta))
+  #     delta <- array(0, c(p, g))
+  if (length(c(mu)) != (p * g))
+    stop(paste("mu should be a ", p, "by", g, "matrix!"))
+  if (length(c(sigma)) != (p * p * g))
+    stop(paste("sigma should be a ", p, "by", p, "by", g,
             " array!"))
-    if (length(c(dof)) != g)
-        stop(paste("dof should be a ", g, " vector!"))
-    if (length(c(delta)) != (p * g))
-        stop(paste("delta should be a ", p, "by", g, " array!"))
-    mu = array(mu, c(p, g))
-    sigma = array(sigma, c(p, p, g))
-    delta = array(delta, c(p, g))
-    dat <- array(0, c(10, p))
+  if (length(c(dof)) != g)
+    stop(paste("dof should be a ", g, " vector!"))
+  if (length(c(delta)) != (p * g))
+    stop(paste("delta should be a ", p, "by", g, " array!"))
+  mu <- array(mu, c(p, g))
+  sigma <- array(sigma, c(p, p, g))
+  delta <- array(delta, c(p, g))
+  dat <- array(0, c(10, p))
     mvrand <- function(n, p, ndist, mean, cov, nu, del) {
         switch(ndist, `1` = rdmvn(n, mean = mean, cov = cov),
             `2` = rdmvt(n, p, mean = mean, cov = cov, nu = nu),
