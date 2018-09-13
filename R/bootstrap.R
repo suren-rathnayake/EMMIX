@@ -72,7 +72,8 @@ bootstrap.noc <- function (x, g1, g2, distr, ncov, B = 99, replace = TRUE,
                 lk1 <- emobj$loglik
             counter = counter + 1
         }
-        dput(emobj, paste("ReturnOf_g_", g, ".ret", sep = ""))
+        # dput(emobj, paste("ReturnOf_g_", g, ".ret", sep = ""))
+
         counter <- 0
         lk0 <- lk1
         vlk[g - g1 + 1] <- lk0
@@ -112,5 +113,5 @@ bootstrap.noc <- function (x, g1, g2, distr, ncov, B = 99, replace = TRUE,
     for (i in 1:(g2 - g1)) {
         pvalue[i] <- sum(ret[, i] < 2 * (vlk[i + 1] - vlk[i]))/B
     }
-    list(ret = ret, vlk = vlk, pvalue = pvalue)
+    list(ret = ret[], vlk = vlk, pvalue = pvalue)
 }

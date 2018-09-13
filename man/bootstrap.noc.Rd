@@ -84,7 +84,9 @@ and
 %% ...
 }
 \references{
-%% ~put references to the literature/web site here ~
+McLachlan G.J. and Krishnan T. (2008). The EM Algorithm and Extensions (2nd). New Jersay: Wiley.
+
+McLachlan G.J. and Peel D. (2000). Finite Mixture Models. New York: Wiley.
 }
 \author{
 %%  ~~who you are~~
