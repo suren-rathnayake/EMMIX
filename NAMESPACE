@@ -10,3 +10,4 @@ importFrom(mvtnorm,rmvnorm)
 
  importFrom("stats", "as.dist", "cor", "cutree", "hclust", "kmeans",
              "rgamma")
+importFrom("stats", "rnorm")

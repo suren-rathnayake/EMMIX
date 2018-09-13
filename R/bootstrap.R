@@ -1,29 +1,31 @@
 bootstrap <- function (x, popPAR, B = 99, replace = TRUE,
-    itmax = 1000, epsilon = 1e-05, ...)
-{
-    x <- as.matrix(x)
-    n <- nrow(x)
-    p <- ncol(x)
-    g <- popPAR$g
-    ncov <- popPAR$ncov
-    distr <- popPAR$distr
+    itmax = 1000, epsilon = 1e-05, ...) {
 
-    if (missing(popPAR))
+  x <- as.matrix(x)
+  n <- nrow(x)
+  p <- ncol(x)
+  g <- popPAR$g
+  ncov <- popPAR$ncov
+  distr <- popPAR$distr
+
+  if (missing(popPAR))
         stop("please run the function EMMIX() first")
-    counter <- 0
-    nnn <- g * (1 + p + p * p + 1 + p)
-    ret <- array(0, c(B, nnn))
-    dimnames(ret) <- list(1:B, c(paste("pi", 1:g, sep = ""),
-        paste("mu", rep(1:p, g), rep(paste(1:g, sep = ""), rep(p,
-            g)), sep = ""), paste("sigma", rep(paste(rep(1:p,
-            rep(p, p)), rep(1:p, p), sep = ""), g), rep(paste(",",
-            1:g, sep = ""), rep(p * p, g)), sep = ""), paste("dof",
-            1:g, sep = ""), paste("delta", rep(1:p, g), rep(paste(1:g,
-            sep = ""), rep(p, g)), sep = "")))
-    for (i in 1:(2 * B)) {
-        if (replace)
-            dat <- x[sample(1:n, n, replace = TRUE), ]
-        else dat <- rdemmix3(n, p, g, distr, popPAR$pro, popPAR$mu,
+  
+  counter <- 0
+  nnn <- g * (1 + p + p * p + 1 + p)
+  ret <- array(0, c(B, nnn))
+  dimnames(ret) <- list(1 : B, c(paste("pi", 1 : g, sep = ""),
+    paste("mu", rep(1 : p, g), rep(paste(1 : g, sep = ""), 
+        rep(p, g)), sep = ""), paste("sigma", 
+        rep(paste(rep(1 : p, rep(p, p)), rep(1 : p, p), sep = ""), g), 
+        rep(paste(",", 1 : g, sep = ""), rep(p * p, g)), sep = ""), 
+        paste("dof",   1 : g, sep = ""), paste("delta", rep(1 : p, g), 
+            rep(paste(1 : g, sep = ""), rep(p, g)), sep = "")))
+
+  for (i in 1:(2 * B)) {
+    if (replace)
+       dat <- x[sample(1:n, n, replace = TRUE), ]
+    else dat <- rdemmix3(n, distr, popPAR$pro, popPAR$mu,
             popPAR$sigma, popPAR$dof, popPAR$delta)
         obj <- emmixfit2(dat, g, popPAR, distr, ncov, itmax,
             epsilon)
@@ -81,7 +83,7 @@ bootstrap.noc <- function (x, g1, g2, distr, ncov, B = 99, replace = TRUE,
             for (i in 1:(2 * B)) {
                 if (replace)
                   dat <- x[sample(1:n, n, replace = TRUE), ]
-                else dat <- rdemmix2(n, p, g, distr, emobj$pro,
+                else dat <- rdemmix2(n, distr, emobj$pro,
                   emobj$mu, emobj$sigma, emobj$dof, emobj$delta)
                 if (is.null(dat))
                   stop("I can not generate the data!")

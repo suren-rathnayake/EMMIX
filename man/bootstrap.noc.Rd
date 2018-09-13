@@ -79,7 +79,7 @@ with components from \code{g1} to \code{g2},
 \eqn{H0: g = g0} versus \eqn{H1 : g = g0 + 1} tests,
 and
 
-\code{`ret`}: bootstrap replications of \eqn{-2 \log (\lambda)}.
+\code{ret}: bootstrap replications of \eqn{-2 \log (\lambda)}.
 
 %% ...
 }
