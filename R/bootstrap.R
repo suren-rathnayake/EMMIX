@@ -48,20 +48,20 @@ bootstrap <- function (x, model, B = 99, replace = TRUE,
   names(std) <- dimnames(ret)[[2]]
   #std
   
-  std_pi <- std[1 : g]
-  std_mu <- matrix(std[g + 1 : (p * g)], nrow = p, ncol = g)
-  std_sigma <- array(NA, c(p, p, g))
+  se_pi <- std[1 : g]
+  se_mu <- matrix(std[g + 1 : (p * g)], nrow = p, ncol = g)
+  se_sigma <- array(NA, c(p, p, g))
   for (i in 1 : g) 
-    std_sigma[,, i] <- matrix(std[(g + p * g) + (p*p*(i-1)) + 1 : (p * p)], 
+    se_sigma[,, i] <- matrix(std[(g + p * g) + (p*p*(i-1)) + 1 : (p * p)], 
                               ncol = p)
-  std_err <- list(std_pi = std_pi, std_mu = std_mu, std_sigma = std_sigma)
+  se_err <- list(se_pi = se_pi, se_mu = se_mu, se_sigma = se_sigma)
   
   if ((distr == "mvt") || (distr == "mst")) 
-    std_err$std_dof <- std[((g + p * g) + (p * p * g)) + 1 : g] 
+    se_err$se_dof <- std[((g + p * g) + (p * p * g)) + 1 : g] 
 
   if ((distr == "msn") || (distr == "mst"))
-    std_err$std_delta <- matrix(std[((g + p * g) + (p * p * g) + g) + 
+    se_err$se_delta <- matrix(std[((g + p * g) + (p * p * g) + g) + 
                                 1 : (g * p)], nrow = p, ncol = g) 
 
-  std_err 
+  se_err 
 }
