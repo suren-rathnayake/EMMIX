@@ -1,14 +1,14 @@
-bootstrap <- function (x, popPAR, B = 99, replace = TRUE,
+bootstrap <- function (x, model, B = 99, replace = TRUE,
     itmax = 1000, epsilon = 1e-05, ...) {
 
   x <- as.matrix(x)
   n <- nrow(x)
   p <- ncol(x)
-  g <- popPAR$g
-  ncov <- popPAR$ncov
-  distr <- popPAR$distr
+  g <- model$g
+  ncov <- model$ncov
+  distr <- model$distr
 
-  if (missing(popPAR))
+  if (missing(model))
         stop("please run the function EMMIX() first")
   
   counter <- 0
@@ -25,17 +25,15 @@ bootstrap <- function (x, popPAR, B = 99, replace = TRUE,
   for (i in 1:(2 * B)) {
     if (replace)
        dat <- x[sample(1:n, n, replace = TRUE), ]
-    else dat <- rdemmix3(n, distr, popPAR$pro, popPAR$mu,
-            popPAR$sigma, popPAR$dof, popPAR$delta)
-        obj <- emmixfit2(dat, g, popPAR, distr, ncov, itmax,
-            epsilon)
+    else dat <- rdemmix3(n, distr, model$pro, model$mu,
+                         model$sigma, model$dof, model$delta)
+        obj <- emmixfit2(dat, g, model, distr, ncov, itmax, epsilon)
         if (obj$error > 1)
             next
         counter <- counter + 1
-        ret[counter, ] <- c(obj$pro, obj$mu, obj$sigma, obj$dof,
-            obj$delta)
+        ret[counter, ] <- c(obj$pro, obj$mu, obj$sigma, obj$dof, obj$delta)
         if (counter >= B)
-            break
+          break
     }
     std <- sqrt(apply(ret[1:counter, ], MARGIN = 2, FUN = "var"))
     names(std) <- dimnames(ret)[[2]]

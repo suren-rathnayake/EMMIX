@@ -6,12 +6,11 @@ Standard Errors for Mixture Model Parameters
 \description{
 Produces estimates of the standard errors for the estimated parameters
 in the mixture model.
-The standard errors may be assessed using parametric bootstrapping
-or  nonparametric bootstrapping (i.e. by sampling with replacement).
-%The standard error analysis and the bootstrap analysis of -2 log (Lambda).
+The standard errors may be assessed using parametric 
+or  nonparametric bootstrap(i.e. by sampling with replacement).
 }
 \usage{
-bootstrap(x, popPAR, B = 99, replace = TRUE, itmax = 1000,
+bootstrap(x, model, B = 99, replace = TRUE, itmax = 1000,
           epsilon = 1e-05, ...)
 }
 \arguments{
@@ -20,7 +19,7 @@ bootstrap(x, popPAR, B = 99, replace = TRUE, itmax = 1000,
   where \eqn{n} is the number of observations and
   \eqn{p} the dimension of data.
 }
-  \item{popPAR}{
+  \item{model}{
   A list containing mixture model parameters.
 }
   \item{B}{
