@@ -32,22 +32,21 @@ bootstrap(x, model, B = 99, replace = TRUE, itmax = 1000,
   Maximum number of Expectation-Maximization steps for the model fitting.
 }
   \item{epsilon}{
-  A numeric value to test the convergence of the Expectation=Maximization
+  A numeric value to test the convergence of the Expectation-Maximization
   algorithm.
   If the relative difference in log-likelihood between two (consecutive)
   EM steps falls below this values, the EM steps terminates.
 }
 \item{...}{
-not used. Leaving it for backward compatibility.
+not used. 
 }
 }
 \details{
-When replace is FALSE, parametric bootstrap is used;
-otherwise replacement method is used.
+When replace is FALSE, the parametric bootstrap is used;
+otherwise nonparametric boostrap (replacement method) is used.
 }
 \value{
 Standard errors of mdodel parameters.
-%% ...
 }
 \references{
 McLachlan G.J. and Krishnan T. (2008). The EM Algorithm and Extensions (2nd). New Jersay: Wiley.
@@ -70,7 +69,7 @@ McLachlan G.J. and Peel D. (2000). Finite Mixture Models. New York: Wiley.
   # Fit a mixture model to the iris data
   # and then obtain the standard errors of model parameters
   fit <- EMMIX(iris[, -5], g = 3, distr = "mvn", ncov = 3,
-                   clust = iris[, 5], itmax = 100, epsilon = 0.00001)
+               clust = iris[, 5], itmax = 100, epsilon = 0.00001)
   # do bootstrap (stadard error analysis)
   ## Not run:
   std <- bootstrap(iris[, -5], fit, B = 19, replace = TRUE)
