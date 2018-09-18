@@ -12,18 +12,30 @@ bootstrap <- function (x, model, B = 99, replace = TRUE,
      stop("please provide the function model parameters.")
   
   counter <- 0
-  nnn <- g * (1 + p + p * p + 1 + p)
-  ret <- array(0, c(B, nnn))
+  #nnn <- g * (1 + p + p * p + 1 + p)
+  #ret <- array(0, c(B, nnn))
+  ret <- NULL
+  
+  if (distr == "mvn") {
 
-  dimnames(ret) <- list(1 : B, c(paste("pi", 1 : g, sep = ""),
-                    paste("mu", rep(1 : p, g), rep(paste(1 : g, sep = ""), 
-                    rep(p, g)), sep = ""), 
-                    paste("sigma", rep(paste(rep(1 : p, rep(p, p)), 
-                    rep(1 : p, p), sep = ""), g), 
-                    rep(paste(",", 1 : g, sep = ""), rep(p * p, g)), sep = ""), 
-                    paste("dof",   1 : g, sep = ""), 
-                    paste("delta", rep(1 : p, g), rep(paste(1 : g, sep = ""), 
-                    rep(p, g)), sep = "")))
+    ret <- matrix(NA, nrow = B, ncol = g * (1 + p + p * p))
+
+  }  else if (distr == "mvt") {
+
+    ret <- matrix(NA, nrow = B, ncol = g * (2 + p + p * p))
+  } else {
+
+    ret <- matrix(NA, nrow = B, ncol = g * (2 + 2*p + p * p))
+  }
+  # dimnames(ret) <- list(1 : B, c(paste("pi", 1 : g, sep = ""),
+  #                  paste("mu", rep(1 : p, g), rep(paste(1 : g, sep = ""), 
+  #                  rep(p, g)), sep = ""), 
+  #                 paste("sigma", rep(paste(rep(1 : p, rep(p, p)), 
+  #                rep(1 : p, p), sep = ""), g), 
+  #               rep(paste(",", 1 : g, sep = ""), rep(p * p, g)), sep = ""), 
+  #               paste("dof",   1 : g, sep = ""), 
+  #               paste("delta", rep(1 : p, g), rep(paste(1 : g, sep = ""), 
+  #               rep(p, g)), sep = "")))
 
   for (i in 1 : (2 * B)) {
 
@@ -39,13 +51,30 @@ bootstrap <- function (x, model, B = 99, replace = TRUE,
       next
     
     counter <- counter + 1
-    ret[counter, ] <- c(obj$pro, obj$mu, obj$sigma, obj$dof, obj$delta)
+
+    if (distr == "mvn") {    
+        ret[counter, ] <- c(obj$pro, obj$mu, obj$sigma)
+    }
+
+    if (distr == "mvt") {    
+        ret[counter, ] <- c(obj$pro, obj$mu, obj$sigma, obj$dof)
+    }
+
+    if (distr == "msn") {
+        obj$dof <- rep(NA, g)    
+        ret[counter, ] <- c(obj$pro, obj$mu, obj$sigma, obj$dof, obj$delta)
+    }
+
+    if (distr == "mst")  {
+        ret[counter, ] <- c(obj$pro, obj$mu, obj$sigma, obj$dof, obj$delta)
+    }
+
     
     if (counter >= B)
       break
   }
   std <- sqrt(apply(ret[1:counter, ], MARGIN = 2, FUN = "var"))
-  names(std) <- dimnames(ret)[[2]]
+  #names(std) <- dimnames(ret)[[2]]
   #std
   
   se_pi <- std[1 : g]

@@ -74,8 +74,8 @@ train_ind <-  sample(1 : nrow(dat), nrow(dat) / 2, replace = FALSE)
 fit <- EMMIX(dat[train_ind, ], g = 3, distr = "mvn", ncov = 3,
                    clust = iris[, 5], itmax = 100, epsilon = 0.00001)
 
-ddmix(dat[train_ind, ], g = 3, distr = "mvn", ncov = 3, mu = fit$mu, 
-      sigma = fit$sigma)
+f_dat <- ddmix(dat[train_ind, ], g = 3, distr = "mvn", ncov = 3, mu = fit$mu,
+                 sigma = fit$sigma)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

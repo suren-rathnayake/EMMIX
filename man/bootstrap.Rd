@@ -66,15 +66,44 @@ McLachlan G.J. and Peel D. (2000). Finite Mixture Models. New York: Wiley.
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-  # Fit a mixture model to the iris data
-  # and then obtain the standard errors of model parameters
-  fit <- EMMIX(iris[, -5], g = 3, distr = "mvn", ncov = 3,
-               clust = iris[, 5], itmax = 100, epsilon = 0.00001)
-  # do bootstrap (stadard error analysis)
-  ## Not run:
-  std <- bootstrap(iris[, -5], fit, B = 19, replace = TRUE)
+set.seed(1729)
+# Fit a mixture model to the iris data
+# and then obtain the standard errors of model parameters
+fit <- EMMIX(iris[, -5], g = 2, distr = "mvn", ncov = 3,
+              itmax = 100, epsilon = 0.00001)
+# do bootstrap (stadard error analysis)
+## Not run:
+std <- bootstrap(iris[, -5], fit, B = 19, replace = TRUE)
+
+# print the stadard errors after rounding to three decimal points
+lapply(std, round, 3)
+# $se_pi
+#   pi1   pi2 
+# 0.031 0.031 
+
+# $se_mu
+#       [,1]  [,2]
+# [1,] 0.058 0.042
+# [2,] 0.032 0.056
+# [3,] 0.086 0.023
+# [4,] 0.044 0.010
+
+# $se_sigma
+# , , 1
+
+#       [,1]  [,2]  [,3]  [,4]
+# [1,] 0.058 0.027 0.066 0.022
+# [2,] 0.027 0.021 0.029 0.012
+# [3,] 0.066 0.029 0.080 0.032
+# [4,] 0.022 0.012 0.032 0.018
+
+# , , 2
+
+#       [,1]  [,2]  [,3]  [,4]
+# [1,] 0.020 0.018 0.008 0.003
+# [2,] 0.018 0.029 0.007 0.004
+# [3,] 0.008 0.007 0.007 0.002
+# [4,] 0.003 0.004 0.002 0.003
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~bootstrap }% use one of  RShowDoc("KEYWORDS")
-\keyword{ ~cluster }% __ONLY ONE__ keyword per line
+\keyword{ ~bootstrap }
+\keyword{ ~cluster }

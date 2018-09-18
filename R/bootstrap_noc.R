@@ -70,5 +70,5 @@ bootstrap.noc <- function (x, g1, g2, distr, ncov, B = 99, replace = TRUE,
     for (i in 1:(g2 - g1)) {
         pvalue[i] <- sum(ret[, i] < 2 * (vlk[i + 1] - vlk[i]))/B
     }
-    list(ret = ret[], vlk = vlk, pvalue = pvalue)
+    list(lrts = ret[], log_lk = vlk, pvalue = pvalue)
 }
