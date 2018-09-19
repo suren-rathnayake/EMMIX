@@ -1,10 +1,9 @@
 Package: EMMIX
-Title: Model based clustering with Gaussian and non-Gaussian mixture models
-Description: Provides functions to fit finite mixture models. Components of the mixture models 
-    can be of the normal distribution, t-distribution, skew normal distribution or skew t-distribution. 
-    Maximum likelihood estimators of model parameters are obtained via the Expectation-Maximization algorithm. Initial version of EMMIX was written in Fortran by David Peel (1999).
+Title: Model based clustering with finite mixture models
+Description: Provides functions to fit normal, t, skew normal, and skew t mixture models. 
+    Maximum likelihood estimators of model parameters are obtained via the Expectation-Maximization algorithm. Initial version of EMMIX was written in Fortran by David Peel.
 Depends: mvtnorm
-Version: 1.0.2.8
+Version: 1.0.2.9
 URL:https://github.com/suren-rathnayake/EMMIX
 Author: Geoff McLachlan, Kui Wang, Angus Ng and David Peel
 Maintainer: Suren Rathnayake <surenr@gmail.com>

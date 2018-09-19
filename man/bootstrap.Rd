@@ -7,7 +7,7 @@ Standard Errors for Mixture Model Parameters
 Produces estimates of the standard errors for the estimated parameters
 in the mixture model.
 The standard errors may be assessed using parametric 
-or  nonparametric bootstrap(i.e. by sampling with replacement).
+or  nonparametric bootstrap (i.e. by sampling with replacement).
 }
 \usage{
 bootstrap(x, model, B = 99, replace = TRUE, itmax = 1000,
