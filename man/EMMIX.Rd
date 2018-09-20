@@ -5,8 +5,8 @@
 Mixture Models
 }
 \description{
-fits the data into the specified multivariate mixture models via the EM
-Algorithm. Distributions (univariate and multivariate) available include
+Fits finite mixture models using the Expectation-Maximization algorithm.
+The mixture models can be from the (univariate and multivariate) 
 normal distribution, t-distribution, skew normal distribution, and skew
 t-distribution.
 }
@@ -27,7 +27,7 @@ EMMIX(dat, g, distr = "mvn", ncov = 3, clust = NULL, init = NULL,
 }
   \item{distr}{
 String indicating the type of distribution to be fitted,
-the default value is \code{"mvn"}, the Normal distribution.
+the default value is \code{"mvn"}, the normal distribution.
 See Details.
 }
   \item{ncov}{
@@ -73,33 +73,36 @@ intial partitions.
 }
 }
 \details{
-The distribution type, determined by the distr parameter, which may take any
-one of the following values: \code{"mvn"} for a multivariate normal,
-\code{"mvt"} for a multivariate t-distribution, "msn" for a multivariate
-skew normal distribution and \code{"mst"} for a multivariate skew
-t-distribution.
-The covariance matrix type, represented by the ncov parameter,
-may be any one of the following: \code{ncov = 1} for a common variance,
-\code{ncov = 2} for a common diagonal variance, \code{ncov = 3} for a
-general variance, \code{ncov = 4} for a diagonal variance,
-\code{ncov = 5} for \eqn{\sigma(h)*I(p)} (diagonal covariance with same
+The \code{distr} determines type of the mixture distribution
+which can be of 
+\code{"mvn"} for a normal distribution,
+\code{"mvt"} for a t-distribution, 
+\code{"msn"} for a skew normal distribution, or  
+\code{"mst"} for a skew t-distribution.
+
+The \code{ncov} parameter specifies the structure of the covariance / scale 
+matrix, and if it is common to components. 
+Following are the available options: 
+\code{ncov = 1} for a common covariance matrix,
+\code{ncov = 2} for a common diagonal covariance matrix, 
+\code{ncov = 3} for a general covariance/scale matrix, 
+\code{ncov = 4} for a diagonal covariance/scale matrix, and
+\code{ncov = 5} for \eqn{\sigma(h) * I(p)} (diagonal covariance with same
 identical diagonal element values).
 
-The parameter init requires following elements: \code{pro}, a numeric vector
-of the mixing proportion of each component; \code{mu}, a \eqn{p} by \eqn{g}
-matrix with each column as its corresponding mean; \code{sigma}, a three
-dimensional \eqn{p} by \eqn{p} by \eqn{g} array with its \eqn{j}th
-component matrix \eqn{(p, p, j)} as the covariance matrix for \eqn{j}th
-component of mixture models; \eqn{dof}, a vector of degrees of freedom for
-each component; \eqn{delta}, a \eqn{p} by \eqn{g} matrix with its columns
+The \code{init} parameter can  (optionally) be used specify initial parameter
+values for the EM algorithm. It should be a list containing 
+following elements: 
+\code{pro}, a numeric vector of the mixing proportion of each component; 
+\code{mu}, a \eqn{p} by \eqn{g} matrix with each column as its 
+corresponding mean; 
+\code{sigma}, a three dimensional \eqn{p} by \eqn{p} by \eqn{g} array with 
+its \eqn{j}th component matrix \eqn{(p, p, j)} as the covariance matrix 
+for \eqn{j}th component of mixture models; 
+\eqn{dof}, a vector of degrees of freedom for each component; 
+\eqn{delta}, a \eqn{p} by \eqn{g} matrix with its columns
 corresponding to skew parameter vectors.
 
-Since we treat the list of pro, mu, sigma, dof, and delta as a common
-structure of parameters for our mixture models, we need to include all
-of them in the initial parameter list init by default although in some
-cases it does not make sense, for example, dof and delta is not
-applicable to normal mixture model. But in most cases, the user only
-need give relevent paramters in the list.
 When the parameter list init is given, the program ignores both initial
 partition clust and automatic partition methods such as \code{nkmeans};
 only when both init and clust are not available, the program uses automatic

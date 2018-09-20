@@ -12,10 +12,6 @@ bootstrap <- function (x, model, B = 99, replace = TRUE,
      stop("please provide the function model parameters.")
   
   counter <- 0
-  #nnn <- g * (1 + p + p * p + 1 + p)
-  #ret <- array(0, c(B, nnn))
-  ret <- NULL
-  
   if (distr == "mvn") {
 
     ret <- matrix(NA, nrow = B, ncol = g * (1 + p + p * p))
@@ -27,23 +23,17 @@ bootstrap <- function (x, model, B = 99, replace = TRUE,
 
     ret <- matrix(NA, nrow = B, ncol = g * (2 + 2*p + p * p))
   }
-  # dimnames(ret) <- list(1 : B, c(paste("pi", 1 : g, sep = ""),
-  #                  paste("mu", rep(1 : p, g), rep(paste(1 : g, sep = ""), 
-  #                  rep(p, g)), sep = ""), 
-  #                 paste("sigma", rep(paste(rep(1 : p, rep(p, p)), 
-  #                rep(1 : p, p), sep = ""), g), 
-  #               rep(paste(",", 1 : g, sep = ""), rep(p * p, g)), sep = ""), 
-  #               paste("dof",   1 : g, sep = ""), 
-  #               paste("delta", rep(1 : p, g), rep(paste(1 : g, sep = ""), 
-  #               rep(p, g)), sep = "")))
 
   for (i in 1 : (2 * B)) {
 
-    if (replace)
+    if (replace) {
+
        dat <- x[sample(1:n, n, replace = TRUE), ]
-    else 
+    } else {
+
       dat <- rdemmix3(n, distr, model$pro, model$mu,
                       model$sigma, model$dof, model$delta)
+    }
     
     obj <- emmixfit2(dat, g, model, distr, ncov, itmax, epsilon)
     
@@ -53,19 +43,23 @@ bootstrap <- function (x, model, B = 99, replace = TRUE,
     counter <- counter + 1
 
     if (distr == "mvn") {    
+
         ret[counter, ] <- c(obj$pro, obj$mu, obj$sigma)
     }
 
     if (distr == "mvt") {    
+
         ret[counter, ] <- c(obj$pro, obj$mu, obj$sigma, obj$dof)
     }
 
     if (distr == "msn") {
+
         obj$dof <- rep(NA, g)    
         ret[counter, ] <- c(obj$pro, obj$mu, obj$sigma, obj$dof, obj$delta)
     }
 
     if (distr == "mst")  {
+      
         ret[counter, ] <- c(obj$pro, obj$mu, obj$sigma, obj$dof, obj$delta)
     }
 
@@ -73,12 +67,13 @@ bootstrap <- function (x, model, B = 99, replace = TRUE,
     if (counter >= B)
       break
   }
-  std <- sqrt(apply(ret[1:counter, ], MARGIN = 2, FUN = "var"))
-  #names(std) <- dimnames(ret)[[2]]
-  #std
+
+  std <- sqrt(apply(ret[1 : counter, ], MARGIN = 2, FUN = "var"))
   
   se_pi <- std[1 : g]
+
   se_mu <- matrix(std[g + 1 : (p * g)], nrow = p, ncol = g)
+
   se_sigma <- array(NA, c(p, p, g))
   for (i in 1 : g) 
     se_sigma[,, i] <- matrix(std[(g + p * g) + (p*p*(i-1)) + 1 : (p * p)], 

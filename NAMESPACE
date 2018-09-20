@@ -2,7 +2,7 @@ useDynLib(EMMIX)
 export("EMMIX",
 "rdmvn","rdmvt",
 "rdemmix","rdemmix2","rdemmix3",
-"ddmvn","ddmvt","ddmix",
+"ddmvn","ddmvt",
 "error.rate","rand.index",
 "bootstrap","bootstrap.noc")
 
