@@ -66,24 +66,26 @@ EMMIX <- function (dat, g, distr = "mvn", ncov = 3, clust = NULL,
    }
    
    if (error <= 1) {
-        ICL <- getICL(dat, nrow(dat), ncol(dat), g, distr, ncov,
+      ICL <- getICL(dat, nrow(dat), ncol(dat), g, distr, ncov,
             obj$pro, obj$mu, obj$sigma, obj$dof, obj$delta, obj$clust)
-        ret <- obj
-        ret$icl <- ICL$ICL
-        if (debug) {
-            msg <- switch(tolower(distr), mvn = paste(g, "- Component Multivariate Normal Mixture Model"),
-                mvt = paste(g, "- Component Multivariate t-Mixture Model"),
-                msn = paste(g, "- Component Multivariate Skew Normal Mixture Model"),
-                mst = paste(g, "- Component Multivariate Skew-t Mixture Model"))
-            cat("\n-----------------------\n\n")
-            cat(msg, "\n")
-            cat("\n-----------------------\n\n")
-            switch(tolower(distr), mvn = print(obj[1:8]), mvt = print(obj[1:9]),
-                msn = print(obj[c(1:8, 10)]), mst = print(obj[1:10]))
-            print(ICL)
-            cat("\n-----------------------\n")
-        }
+      ret <- obj
+      ret$icl <- ICL$ICL
+      if (debug) {
+        msg <- switch(tolower(distr), 
+          mvn = paste(g, "- Component Multivariate Normal Mixture Model"),
+          mvt = paste(g, "- Component Multivariate t-Mixture Model"),
+          msn = paste(g, "- Component Multivariate Skew Normal Mixture Model"),
+          mst = paste(g, "- Component Multivariate Skew-t Mixture Model")
+        )
+        cat("\n-----------------------\n\n")
+        cat(msg, "\n")
+        cat("\n-----------------------\n\n")
+        switch(tolower(distr), mvn = print(obj[1:8]), mvt = print(obj[1:9]),
+              msn = print(obj[c(1:8, 10)]), mst = print(obj[1:10]))
+        print(ICL)
+        cat("\n-----------------------\n")
     }
+  }
     ret$g <- g
     ret$distr <- distr
     ret$ncov <- ncov

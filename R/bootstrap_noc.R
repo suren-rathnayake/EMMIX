@@ -44,18 +44,22 @@ bootstrap.noc <- function (x, g_min, g_max, distr, ncov, B = 99,
 
             for (i in 1 : (2 * B)) {
               if (replace) {
-                  dat <- x[sample(1:n, n, replace = TRUE), ]
+
+                  dat <- x[sample(1 : n, n, replace = TRUE), ]
               } else {
-                dat <- rdemmix2(n, distr, emobj$pro,
-                  emobj$mu, emobj$sigma, emobj$dof, emobj$delta)
+
+                dat <- rdemmix2(n, distr, emobj$pro, emobj$mu, emobj$sigma, 
+                                emobj$dof, emobj$delta)
               }  
+
               if (is.null(dat))
-                stop("I can not generate the data!")
+                stop("Error in generating simulated data!")
               
               obj <- emmixfit2(dat, g, emobj, distr, ncov, itmax, epsilon)
 
               if (obj$error > 1)
                 next
+              
               ii <- 0
               lk2 <- -Inf
               while (ii < 10) {
