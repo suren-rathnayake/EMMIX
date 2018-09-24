@@ -6,7 +6,7 @@ Standard Errors for Mixture Model Parameters
 \description{
 Produces estimates of the standard errors for the estimated parameters
 in the mixture model.
-The standard errors may be assessed using parametric 
+The standard errors may be assessed using parametric
 or  nonparametric bootstrap (i.e. by sampling with replacement).
 }
 \usage{
@@ -38,7 +38,7 @@ bootstrap(x, model, B = 99, replace = TRUE, itmax = 1000,
   EM steps falls below this values, the EM steps terminates.
 }
 \item{...}{
-not used. 
+not used.
 }
 }
 \details{
@@ -53,18 +53,6 @@ McLachlan G.J. and Krishnan T. (2008). The EM Algorithm and Extensions (2nd). Ne
 
 McLachlan G.J. and Peel D. (2000). Finite Mixture Models. New York: Wiley.
 }
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
 set.seed(1729)
 # Fit a mixture model to the iris data
@@ -78,8 +66,8 @@ std <- bootstrap(iris[, -5], fit, B = 19, replace = TRUE)
 # print the stadard errors after rounding to three decimal points
 lapply(std, round, 3)
 # $se_pi
-#   pi1   pi2 
-# 0.031 0.031 
+#   pi1   pi2
+# 0.031 0.031
 
 # $se_mu
 #       [,1]  [,2]

@@ -5,13 +5,13 @@
 Mixture Analysis for a Range of Number of Components
 }
 \description{
-A bootstrap approach to assess the null distribution (and hence the P-value) 
-of the log likelihood ratio test (\eqn{-2 \log (\lambda)}) to test 
+A bootstrap approach to assess the null distribution (and hence the P-value)
+of the log likelihood ratio test (\eqn{-2 \log (\lambda)}) to test
 \eqn{H0: g = g_0} versus \eqn{H1 : g = g_0 + 1} in a given range of values
-of number of components \eqn{g}. 
+of number of components \eqn{g}.
 }
 \usage{
-bootstrap.noc(x, g_min, g_max, distr, ncov, B = 99, replace = TRUE, 
+bootstrap.noc(x, g_min, g_max, distr, ncov, B = 99, replace = TRUE,
 							itmax = 1000, epsilon = 1e-05, ...)
 }
 %- maybe also 'usage' for other objects documented here.
@@ -38,8 +38,8 @@ bootstrap.noc(x, g_min, g_max, distr, ncov, B = 99, replace = TRUE,
   The number of simulated data or replacements to be tried.
 }
   \item{replace}{
-  If \code{replace = TRUE}, the analysis is carried out by sampling with 
-  replacement from original data, otherwise a parametric bootstrap procedure 
+  If \code{replace = TRUE}, the analysis is carried out by sampling with
+  replacement from original data, otherwise a parametric bootstrap procedure
   is used where the resampling is done by drawing from fitted null model.
 }
   \item{itmax}{
@@ -56,10 +56,10 @@ not used. Leaving it for backward compatibility.
 }
 }
 \details{
-The distribution type, \code{distr}, is one of the following values: 
-\code{"mvn"} for a multivariate normal, 
+The distribution type, \code{distr}, is one of the following values:
+\code{"mvn"} for a multivariate normal,
 \code{"mvt"} for a multivariate t-distribution,
-\code{"msn"} for a multivariate skew normal distribution and 
+\code{"msn"} for a multivariate skew normal distribution and
 \code{"mst"} for a multivariate skew t-distribution.
 
 The covariance matrix type, represented by the ncov parameter,
@@ -73,12 +73,12 @@ When replace is FALSE, parametric bootstrap is used;
 otherwise replacement method is used.
 }
 \value{
-A list containing 
+A list containing
 
-\code{vlk}: log-likelihood values of fitted models 
-with components from \code{g_min} to \code{g_max},  
+\code{vlk}: log-likelihood values of fitted models
+with components from \code{g_min} to \code{g_max},
 
-\code{pvalue}: P-values for successive 
+\code{pvalue}: P-values for successive
 \eqn{H0: g = g_0} versus \eqn{H1 : g = g_0 + 1} tests,
 and
 
@@ -91,21 +91,9 @@ McLachlan G.J. and Krishnan T. (2008). The EM Algorithm and Extensions (2nd). Ne
 
 McLachlan G.J. and Peel D. (2000). Finite Mixture Models. New York: Wiley.
 }
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
 set.seed(1089)
-out <- bootstrap.noc(x = iris[, -5], g_min = 1, g_max = 4, distr = "mvn", 
+out <- bootstrap.noc(x = iris[, -5], g_min = 1, g_max = 4, distr = "mvn",
           ncov = 3, B = 29, replace = TRUE, itmax = 1000, epsilon = 1e-5)
 
 

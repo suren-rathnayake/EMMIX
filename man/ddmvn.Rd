@@ -3,7 +3,6 @@
 \alias{rdmvn}
 \alias{ddmvt}
 \alias{rdmvt}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 The Multivariate Normal and t-Distributions
 }
@@ -38,12 +37,9 @@ of normal distributions, and scale matrix for t-distributions.
  The degrees of freedom which is a positive scaler.
 }
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
 \value{
-\code{ddmvn} and \code{ddmvt} gives the density values for
-normal and t-distributions, respectively, while \code{rdmvn} and
+Functions \code{ddmvn} and \code{ddmvt} gives the density values for
+normal and \emph{t}-distributions, respectively, while \code{rdmvn} and
 \code{rdmvt} generates the random numbers from normal and t-distributions,
 respectively.
 }
@@ -51,18 +47,6 @@ respectively.
 McLachlan G.J. and Krishnan T. (2008). The EM Algorithm and Extensions (2nd). New Jersay: Wiley.
 
 McLachlan G.J. and Peel D. (2000). Finite Mixture Models. New York: Wiley.
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
   n <- 100
@@ -73,7 +57,6 @@ McLachlan G.J. and Peel D. (2000). Finite Mixture Models. New York: Wiley.
   x	<- rdmvt(n, mean, cov, nu)
   den <- ddmvt(x, mean, cov, nu)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+
+\keyword{ ~distribution }% 
+\keyword{ ~multivariate }%

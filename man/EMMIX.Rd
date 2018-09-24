@@ -76,9 +76,9 @@ intial partitions.
 The \code{distr} determines type of the mixture distribution
 which can be of
 \code{"mvn"} for a normal distribution,
-\code{"mvt"} for a t-distribution,
+\code{"mvt"} for a \emph{t}-distribution,
 \code{"msn"} for a skew normal distribution, or
-\code{"mst"} for a skew t-distribution.
+\code{"mst"} for a skew \emph{t}-distribution.
 
 The \code{ncov} parameter specifies the structure of the covariance / scale
 matrix, and if it is common to components.
