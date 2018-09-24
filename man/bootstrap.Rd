@@ -4,45 +4,48 @@
 Standard Errors for Mixture Model Parameters
 }
 \description{
-Produces estimates of the standard errors for the estimated parameters
-in the mixture model.
+Function to estimate the standard errors of mixture model parameters. 
 The standard errors may be assessed using parametric
-or  nonparametric bootstrap (i.e. by sampling with replacement).
+or nonparametric bootstrap (i.e. by sampling with replacement).
 }
 \usage{
 bootstrap(x, model, B = 99, replace = TRUE, itmax = 1000,
           epsilon = 1e-05, ...)
 }
 \arguments{
-  \item{x}{
+\item{x}{
   The data in the form of a \eqn{n} by \eqn{p} numeric matrix,
   where \eqn{n} is the number of observations and
   \eqn{p} the dimension of data.
 }
-  \item{model}{
+\item{model}{
   A list containing mixture model parameters.
 }
-  \item{B}{
+\item{B}{
   The number of simulated data or replacements to be tried.
 }
-  \item{replace}{
-  A logical value indicating whether replacement to be used.
+\item{replace}{
+  A logical value indicating whether nonparametic (default), or
+  parametric bootstrap to be used.
 }
-  \item{itmax}{
-  Maximum number of Expectation-Maximization steps for the model fitting.
+\item{itmax}{
+  Maximum number of Expectation-Maximization steps to be used in model 
+  fitting.
 }
-  \item{epsilon}{
+\item{epsilon}{
   A numeric value to test the convergence of the Expectation-Maximization
-  algorithm.
-  If the relative difference in log-likelihood between two (consecutive)
-  EM steps falls below this values, the EM steps terminates.
+  algorithm. If the relative difference in log-likelihood between two
+  (consecutive) EM steps falls below this values, the EM steps terminates.
 }
 \item{...}{
-not used.
+  not used.
 }
 }
 \details{
-When replace is FALSE, the parametric bootstrap is used;
+The \code{model} is a list that contains model parameters as returned by
+the \code{EMMIX} function. 
+
+When \code{replace = FALSE}, the parametric bootstrap is used;
 otherwise nonparametric boostrap (replacement method) is used.
 }
 \value{

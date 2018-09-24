@@ -1,5 +1,5 @@
 useDynLib(EMMIX)
-export("EMMIX",
+export("EMMIX", "ddmix",
 "rdmvn","rdmvt", "rdmsn", "rdmst",
 "rdemmix","rdemmix2","rdemmix3",
 "ddmvn","ddmvt", "ddmsn", "ddmst",
@@ -7,7 +7,6 @@ export("EMMIX",
 "bootstrap","bootstrap.noc")
 
 importFrom(mvtnorm,rmvnorm)
-
- importFrom("stats", "as.dist", "cor", "cutree", "hclust", "kmeans",
+importFrom("stats", "as.dist", "cor", "cutree", "hclust", "kmeans",
              "rgamma")
 importFrom("stats", "rnorm")

@@ -1,13 +1,13 @@
-\name{ddmvn}
-\alias{ddmvn}
-\alias{rdmvn}
-\title{The Multivariate Normal Distribution}
+\name{ddmvt}
+\alias{ddmvt}
+\alias{rdmvt}
+\title{The Multivariate t-Distribution}
 \description{
-Density and random generation for multivariate normal distributions. 
+Density and random generation for multivariate \emph{t}-distributions. 
 }
 \usage{
-  ddmvn(dat, mean, cov)
-  rdmvn(n, mean, cov)
+  ddmvt(dat, mean, cov, nu)
+  rdmvt(n, mean, cov, nu)
 }
 \arguments{
 \item{dat}{
@@ -25,22 +25,27 @@ Density and random generation for multivariate normal distributions.
   A matrix containing the compoent covariance in the case
   of normal distributions, and scale matrix for \emph{t}-distributions.
 }
+\item{nu}{
+ The degrees of freedom which is a positive scaler.
+}
 }
 \value{
-\code{ddmvn} gives the density values; \code{rdmvn} generates the random numbers 
+\code{ddmvt} gives the density values; \code{rdmvt} generates the random numbers 
 }
 \seealso{
-\code{\link{rdemmix}},\code{\link{ddmvt}},\code{\link{ddmsn}},
-\code{\link{ddmst}},\code{\link{rdmvt}},\code{\link{rdmsn}},
+\code{\link{rdemmix}},\code{\link{ddmvn}},\code{\link{ddmsn}},
+\code{\link{ddmst}},\code{\link{rdmvn}},\code{\link{rdmsn}},
 \code{\link{rdmst}}.
 }
 \examples{
 n <- 100
 p <- 2
 mean <- rep(0, p)
-cov  <- diag(p)
-y <-   rdmvn(n, mean, cov)
-den <- ddmvn(y, mean, cov)
+cov <- diag(p)
+nu <-  3
+
+x <- rdmvt(n, mean, cov, nu)
+den <- ddmvt(x, mean, cov, nu)
 }
 \keyword{cluster}
 \keyword{datasets}

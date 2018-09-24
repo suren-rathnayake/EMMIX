@@ -5,17 +5,25 @@ bootstrap <- function (x, model, B = 99, replace = TRUE,
   n <- nrow(x)
   p <- ncol(x)
   g <- model$g
+  if (!exists("ncov", model)) {
+    error("The model parameter must contain `ncov` which describe \
+      structure of mixture model. See help(EMMIX).")
+  }
   ncov <- model$ncov
+
+  if (!exists("distr", model)) {
+    error("The model parameter must contain `distr` which describe \
+      the type of component distributions. See help(EMMIX).")
+  }  
   distr <- model$distr
 
   if (missing(model))
-     stop("please provide the function model parameters.")
+     stop("Please provide `model` parameters.")
   
   counter <- 0
   if (distr == "mvn") {
 
     ret <- matrix(NA, nrow = B, ncol = g * (1 + p + p * p))
-
   }  else if (distr == "mvt") {
 
     ret <- matrix(NA, nrow = B, ncol = g * (2 + p + p * p))
