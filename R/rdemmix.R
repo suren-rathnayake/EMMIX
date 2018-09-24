@@ -50,8 +50,8 @@ rdemmix <- function (nvect, distr, mu, sigma, dof = NULL, delta = NULL)
     mvrand <- function(n, p, ndist, mean, cov, nu, del) {
         switch(ndist, `1` = rdmvn(n, mean = mean, cov = cov),
             `2` = rdmvt(n, mean = mean, cov = cov, nu = nu),
-            `3` = rdmsn(n, mean = mean, cov = cov, delta = del),
-            `4` = rdmst(n, mean = mean, cov = cov, nu = nu, delta = del))
+            `3` = rdmsn(n, mean = mean, cov = cov, del = del),
+            `4` = rdmst(n, mean = mean, cov = cov, nu = nu, del = del))
     }
     if (g >= 1)
         for (h in 1:g) {

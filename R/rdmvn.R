@@ -13,45 +13,47 @@ rdmvn <- function (n, mean, cov) {
 }
 
 rdmvt <- function (n, mean, cov, nu) {
+
   cov <- as.matrix(cov)
   p <- nrow(cov)
   u <- rgamma(n, nu/2, nu/2)
   t(t(rdmvn(n, mean = rep(0, p), cov = cov)/sqrt(u)) + mean)
 }
 
-rdmsn <- function(n, mean, cov, delta) {
+rdmsn <- function (n, mean, cov, del) {
+
   x <-  rdmvn(n, mean, cov)
   z <-  abs(rnorm(n))
-  as.matrix(z %*% t(delta) + x)
+  as.matrix(z %*% t(del) + x)
 }
 
-rdmst <- function(n, mean, cov, nu, delta) {
+rdmst <- function (n, mean, cov, nu, del) {
 
   p <- nrow(cov)
   u <- rgamma(n, nu/2, nu/2)
   x <- t(t(rdmvn(n, mean = rep(0, p), cov = cov) /sqrt(u)) + mean)
   z <- abs(rnorm(n) / sqrt(u))
-  as.matrix(z %*% t(delta) + x)
+  as.matrix(z %*% t(del) + x)
 }
 
-ddmvn <- function (dat, mean, cov)
-{
-    p <- nrow(cov)
-    exp(ddmix(dat, 1, "mvn", mean, cov, 0, rep(0, p)))
+ddmvn <- function (dat, mean, cov) {
+
+  p <- nrow(cov)
+  exp(ddmix(dat, 1, "mvn", mean, cov, 0, rep(0, p)))
 }
 
-ddmvt <- function (dat, mean, cov, nu)
-{
+ddmvt <- function (dat, mean, cov, nu) {
+
   p <- nrow(cov)
   exp(ddmix(dat, 1, "mvt", mean, cov, nu, rep(0, p)))
 }
 
-ddmsn <- function(dat, mean, cov, del)
-{
-    exp(ddmix(dat, 1, "msn", mean, cov, 0, del))
+ddmsn <- function (dat, mean, cov, del) {
+
+  exp(ddmix(dat, 1, "msn", mean, cov, 0, del))
 }
 
-ddmst<-function(dat, mean, cov, nu, del)
-{
-    exp(ddmix(dat,n,p,1, "mst", mean, cov, nu, del))
+ddmst <-function (dat, mean, cov, nu, del) {
+
+  exp(ddmix(dat, 1, "mst", mean, cov, nu, del))
 }
