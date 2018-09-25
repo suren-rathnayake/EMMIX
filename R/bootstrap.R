@@ -6,13 +6,13 @@ bootstrap <- function (x, model, B = 99, replace = TRUE,
   p <- ncol(x)
   g <- model$g
   if (!exists("ncov", model)) {
-    error("The model parameter must contain `ncov` which describe \
+    stop("The model parameter must contain `ncov` which describe \
       structure of mixture model. See help(EMMIX).")
   }
   ncov <- model$ncov
 
   if (!exists("distr", model)) {
-    error("The model parameter must contain `distr` which describe \
+    stop("The model parameter must contain `distr` which describe \
       the type of component distributions. See help(EMMIX).")
   }  
   distr <- model$distr
