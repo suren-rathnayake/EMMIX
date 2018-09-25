@@ -6,7 +6,7 @@ Mixture Analysis for a Range of Number of Components
 }
 \description{
 A bootstrap approach to assess the null distribution (and hence the P-value)
-of the log likelihood ratio test (\eqn{-2 \log (\lambda)}) to test
+of the log likelihood ratio test (\eqn{-2 \log \lambda}) to test
 \eqn{H0: g = g_0} versus \eqn{H1 : g = g_0 + 1} in a given range of values
 of number of components \eqn{g}.
 }
@@ -80,9 +80,7 @@ with components from \code{g_min} to \code{g_max},
 \eqn{H0: g = g_0} versus \eqn{H1 : g = g_0 + 1} tests,
 and
 
-\code{ret}: bootstrap replications of \eqn{-2 \log (\lambda)}.
-
-%% ...
+\code{ret}: bootstrap replications of \eqn{-2 \log \lambda}.
 }
 \references{
 McLachlan GJ and Krishnan T (2008). The EM Algorithm and Extensions (2nd). 
