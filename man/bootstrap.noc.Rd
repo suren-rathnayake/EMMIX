@@ -14,62 +14,60 @@ of number of components \eqn{g}.
 bootstrap.noc(x, g_min, g_max, distr, ncov, B = 99, replace = TRUE,
 							itmax = 1000, epsilon = 1e-05, ...)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{
-  The data in the form of a \eqn{n} by \eqn{p} numeric matrix,
-  where \eqn{n} is the number of observations and \eqn{p} the dimension of
-  the data.
+\item{x}{
+ The data in the form of a \eqn{n} by \eqn{p} numeric matrix, where 
+ \eqn{n} is the number of observations and \eqn{p} the dimension of data.
 }
-  \item{g_min}{
-  Minimum number of components to consider for the the mixture model.
+\item{g_min}{
+ Minimum number of components to consider for the the mixture model.
 }
-  \item{g_max}{
-  Maximum number of components to consider for the the mixture model.
+\item{g_max}{
+ Maximum number of components to consider for the the mixture model.
 }
-  \item{distr}{
+\item{distr}{
  A string indicating the type of distribution to be fit.
  See Details.
 }
-  \item{ncov}{
+\item{ncov}{
  An integer to indicate the type of covariance structure. See Details.
 }
-  \item{B}{
-  The number of simulated data or replacements to be tried.
+\item{B}{
+ The number of simulated data or replacements to be tried.
 }
-  \item{replace}{
-  If \code{replace = TRUE}, the analysis is carried out by sampling with
-  replacement from original data, otherwise a parametric bootstrap procedure
-  is used where the resampling is done by drawing from fitted null model.
+\item{replace}{
+ If \code{replace = TRUE}, the analysis is carried out by sampling with
+ replacement from original data, otherwise a parametric bootstrap procedure
+ is used where the resampling is done by drawing from fitted null model.
 }
-  \item{itmax}{
-  Maximum number of Expectation-Maximization steps for the model fitting.
+\item{itmax}{
+ Maximum number of Expectation-Maximization steps for the model fitting.
 }
-  \item{epsilon}{
-  A numeric value to test the convergence of the Expectation-Maximization
-  algorithm.
-  If the relative difference in log-likelihood between two (consecutive)
-  EM steps falls below this values, the EM steps terminates.
+\item{epsilon}{
+ A numeric value to test the convergence of the Expectation-Maximization
+ algorithm.
+ If the relative difference in log-likelihood between two (consecutive)
+ EM steps falls below this values, the EM steps terminates.
 }
 \item{...}{
-not used. Leaving it for backward compatibility.
+ not used. Leaving it for backward compatibility.
 }
 }
 \details{
 The distribution type, \code{distr}, is one of the following values:
 \code{"mvn"} for a multivariate normal,
-\code{"mvt"} for a multivariate t-distribution,
+\code{"mvt"} for a multivariate \emph{t}-distribution,
 \code{"msn"} for a multivariate skew normal distribution and
-\code{"mst"} for a multivariate skew t-distribution.
+\code{"mst"} for a multivariate skew \emph{t}-distribution.
 
-The covariance matrix type, represented by the ncov parameter,
+The covariance matrix type, represented by the \code{ncov} parameter,
 may be any one of the following: \code{ncov = 1} for a common variance,
 \code{ncov = 2} for a common diagonal variance, \code{ncov = 3} for a general
 variance, \code{ncov = 4} for a diagonal variance, \code{ncov = 5} for
 \eqn{\sigma(h) * I(p)} (diagonal covariance with same identical diagonal
 element values).
 
-When replace is FALSE, parametric bootstrap is used;
+When \code{replace = FALSE}, parametric bootstrap is used;
 otherwise replacement method is used.
 }
 \value{
@@ -87,15 +85,15 @@ and
 %% ...
 }
 \references{
-McLachlan G.J. and Krishnan T. (2008). The EM Algorithm and Extensions (2nd). New Jersay: Wiley.
+McLachlan GJ and Krishnan T (2008). The EM Algorithm and Extensions (2nd). 
+New Jersay: Wiley.
 
-McLachlan G.J. and Peel D. (2000). Finite Mixture Models. New York: Wiley.
+McLachlan GJ and Peel D (2000). Finite Mixture Models. New York: Wiley.
 }
 \examples{
 set.seed(1089)
 out <- bootstrap.noc(x = iris[, -5], g_min = 1, g_max = 4, distr = "mvn",
           ncov = 3, B = 29, replace = TRUE, itmax = 1000, epsilon = 1e-5)
-
 
 out
 # $lrts
@@ -119,5 +117,5 @@ out
 # $pvalue
 # [1] 0.24137931 0.20689655 0.06896552
 }
-\keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ ~cluster }% use one of  RShowDoc("KEYWORDS")
+\keyword{ ~htest }% __ONLY ONE__ keyword per line
