@@ -20,10 +20,10 @@ bootstrap.noc(x, g_min, g_max, distr, ncov, B = 99, replace = TRUE,
  \eqn{n} is the number of observations and \eqn{p} the dimension of data.
 }
 \item{g_min}{
- Minimum number of components to consider for the the mixture model.
+ Minimum number of components to consider for the mixture model.
 }
 \item{g_max}{
- Maximum number of components to consider for the the mixture model.
+ Maximum number of components to consider for the mixture model.
 }
 \item{distr}{
  A string indicating the type of distribution to be fit.
@@ -102,8 +102,6 @@ out
 # 4  288.9804  52.79434 74.05716
 # 5  348.7742 105.06670 75.59885
 # ...
-# 24 351.5601  91.14335 46.76467
-# 25 375.2694  81.27428 73.37906
 # 26 391.8864  39.59253 61.39599
 # 27 369.1019 100.66063 94.15278
 # 28 315.0528  58.13273 80.25712

@@ -1,4 +1,4 @@
-\name{ddmsn}
+\name{rdmsn}
 \alias{ddmsn}
 \alias{rdmsn}
 \title{The Multivariate Skew Normal Distribution}
@@ -20,10 +20,10 @@ distributions.
   Number of observations (to be drawn).
 }
 \item{mean}{
-  A vector containing compoent mean.
+  A vector containing mean parameter.
 }
 \item{cov}{
-  A matrix containing the compoent covariance in the case
+  A matrix containing the covariance matrix in the case
   of normal distributions, and scale matrix for \emph{t}-distributions.
 }
 \item{del}{

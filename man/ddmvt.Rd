@@ -1,4 +1,4 @@
-\name{ddmvt}
+\name{rdmvt}
 \alias{ddmvt}
 \alias{rdmvt}
 \title{The Multivariate t-Distribution}
@@ -19,10 +19,10 @@ Density and random generation for multivariate \emph{t}-distributions.
   Number of observations (to be drawn).
 }
 \item{mean}{
-  A vector containing compoent mean.
+  A vector containing mean parameter.
 }
 \item{cov}{
-  A matrix containing the compoent covariance in the case
+  A matrix containing the covariance matrix in the case
   of normal distributions, and scale matrix for \emph{t}-distributions.
 }
 \item{nu}{

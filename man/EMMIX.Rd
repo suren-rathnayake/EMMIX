@@ -6,8 +6,8 @@ Mixture Models
 \description{
 Fits finite mixture models using the Expectation-Maximization algorithm.
 The mixture models can be from the (univariate and multivariate)
-normal distribution, t-distribution, skew normal distribution, and skew
-t-distribution.
+normal distribution, \emph{t}-distribution, skew normal distribution, 
+and skew \emph{t}-distribution.
 }
 \usage{
 EMMIX(dat, g, distr = "mvn", ncov = 3, clust = NULL, init = NULL,
@@ -16,24 +16,24 @@ EMMIX(dat, g, distr = "mvn", ncov = 3, clust = NULL, init = NULL,
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{dat}{
+\item{dat}{
   Data in the form of a \eqn{n} by \eqn{p} numeric matrix,
   where \eqn{n} is the number of observations and
   \eqn{p} the dimension of data.
 }
-  \item{g}{
+\item{g}{
  Number of components.
 }
-  \item{distr}{
+\item{distr}{
 String indicating the type of distribution to be fitted,
 the default value is \code{"mvn"}, the normal distribution.
 See Details.
 }
-  \item{ncov}{
+\item{ncov}{
 A small integer indicating the type of covariance structure;
 the default value is 3. See Details.
 }
-  \item{clust}{
+\item{clust}{
 A vector of integers specifying the initial partitions of the data;
 the default is NULL.
 }
@@ -69,7 +69,7 @@ FALSE silent; the default value is TRUE.
 }
   \item{initloop}{
 A integer specifying the number of initial loops when searching the best
-intial partitions.
+initial partitions.
 }
 }
 \details{
@@ -103,28 +103,25 @@ for \eqn{j}th component of mixture models;
 \eqn{delta}, a \eqn{p} by \eqn{g} matrix with its columns
 corresponding to skew parameter vectors.
 
-When the parameter list init is given, the program ignores both initial
-partition clust and automatic partition methods such as \code{nkmeans};
-only when both init and clust are not available, the program uses automatic
-approaches such as k-means partition method to find the best inital
-values. All three automatic approaches are used to find the best initial
-partition and initial values if required.
-
-The return values include all potential parameters pro, mu, sigma, dof,
-and delta, but user should not use or interpret irrelevant information
-arbitrarily. For example, dof and delta for Normal mixture models.
+The user can optionally specify initial partitioning of the
+samples using the \code{clust} parameter. 
+Also, the user can specify a number of k-means partitions \code{nkmeans},
+a number of random partitions \code{nrandom}, and 
+a number of hierarchical clustering partitions \code{nhclust} 
+to find the initial parameter values.
 }
 
 \value{
 \item{error}{Error code, 0 = normal exit; 1 = did not converge within
-itmax iterations; 2 = failed to get the initial values; 3 = singularity.}
+\code{itmax} iterations; 2 = failed to get the initial values; 
+3 = singularity.}
 \item{aic}{Akaike Information Criterion (AIC).}
 \item{bic}{Bayes Information Criterion (BIC).}
 \item{icl}{Integrated Completed Likelihood Criterion (ICL).}
 \item{pro}{A vector of mixing proportions.}
 \item{mu}{A numeric matrix with each column corresponding to the mean.}
-\item{sigma}{An array of dimension \code{(p ,p, g)} with first two dimension
-corresponding covari- ance matrix of each component.}
+\item{sigma}{An array of dimension \code{(p ,p, g)} with first two 
+dimension corresponding covariance matrix of each component.}
 \item{dof}{A vector of degrees of freedom for each component, see Details.}
 \item{delta}{A \eqn{p} by \eqn{g} matrix with each column corresponding
 to a skew parameter vector.}
@@ -134,10 +131,10 @@ to a skew parameter vector.}
 \item{tau}{An n by g matrix of posterior probability for each data point.}
 }
 \references{
-McLachlan G.J. and Krishnan T. (2008). The EM Algorithm and Extensions
+McLachlan GJ and Krishnan T (2008). The EM Algorithm and Extensions
 (2nd). New Jersay: Wiley.
 
-McLachlan G.J. and Peel D. (2000). Finite Mixture Models. New York: Wiley.
+McLachlan GJ and Peel D (2000). Finite Mixture Models. New York: Wiley.
 }
 \examples{
  fit <- EMMIX(iris[, -5], g= 3, distr = "mvn", ncov = 3)

@@ -1,4 +1,5 @@
-\name{rmix}
+\name{dmix}
+\alias{rmix}
 \alias{dmix}
 \alias{ddmix}
 \alias{rdemmix}
@@ -36,8 +37,9 @@ rdemmix3(n, distr, pro, mu, sigma, dof = NULL, delta = NULL)
 }
 \item{distr}{
   A string indicating the distribution; \code{"mvn"} for normal distribution,
-  \code{"mvt"} for t-distribution, \code{"msn"} for skew normal distribution,
-  and \code{"mst"} for skew t-distribution.
+  \code{"mvt"} for \emph{t}-distribution, 
+  \code{"msn"} for skew normal distribution,
+  and \code{"mst"} for skew \emph{t}-distribution.
 }
 \item{pro}{
 A vector containing of mixing proportion for the \emph{i}th 

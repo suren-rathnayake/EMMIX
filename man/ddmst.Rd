@@ -1,4 +1,4 @@
-\name{ddmst}
+\name{rdmst}
 \alias{ddmst}
 \alias{rdmst}
 \title{The Multivariate Skew t-distribution}
@@ -19,10 +19,10 @@ Density and random generation for multivariate skew \emph{t}-distributions.
   Number of observations (to be drawn).
 }
 \item{mean}{
-  A vector containing compoent mean.
+  A vector containing the mean parameter.
 }
 \item{cov}{
-  A matrix containing the compoent covariance in the case
+  A matrix containing the covariance matrix in the case
   of normal distributions, and scale matrix for \emph{t}-distributions.
 }
 \item{nu}{

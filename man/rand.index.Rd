@@ -30,17 +30,8 @@ Scaler specifying how closely two partitions agree.
 Hubert L, and Arabie P (1985). Comparing Partitions.
 \emph{Journal of the Classification} \strong{2}, 193--218.
 }
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link{error.rate}}
 }
 \examples{
 clu1 <- c(1, 2, 3, 1, 1, 2, 2, 3, 3)

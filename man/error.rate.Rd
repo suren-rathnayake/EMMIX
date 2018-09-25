@@ -2,7 +2,7 @@
 \alias{error.rate}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
- Minimum Number of Misallocations
+ Minimum Rate of Misallocations
 }
 \description{
 Given two vectors each corresponding to a set of categories,
@@ -27,20 +27,8 @@ Returns the minimum number of misallocations.
 \value{
   Integer specifying the minimum number of misallocations.
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link{rand.index}}
 }
 \examples{
 clu1 <- c(1, 2, 3, 1, 1, 2, 2, 3, 3)
