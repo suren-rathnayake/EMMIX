@@ -62,7 +62,7 @@ Both \code{rdemmix} and \code{rdemmix2} return an \eqn{n} by \eqn{p}
 numeric matrix with rows corresponding to the random variates 
 generated, where as \code{rdemmix3} returns a list which, 
 in addition to the random variates generated contain the label,
-\code{cluster}, from which the variate is generated.
+\code{cluster}, from which each variate is generated.
 }
 \references{
 McLachlan GJ and Krishnan T (2008). The EM Algorithm and Extensions (2nd).

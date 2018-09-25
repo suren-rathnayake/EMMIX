@@ -1,5 +1,5 @@
 useDynLib(EMMIX)
-export("EMMIX", "ddmix",
+export("EMMIX", "ddmix", "rmix", "dmix",
 "rdmvn","rdmvt", "rdmsn", "rdmst",
 "rdemmix","rdemmix2","rdemmix3",
 "ddmvn","ddmvt", "ddmsn", "ddmst",

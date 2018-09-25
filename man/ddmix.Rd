@@ -3,7 +3,7 @@
 \title{Density Functions of Mixture Models}
 \description{
 Calculate the density of multivariate mixture models at data points for 
-each component
+each component.
 }
 \usage{
 ddmix(dat, g, distr, mu, sigma, dof = NULL, delta = NULL, ...)
