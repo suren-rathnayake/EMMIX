@@ -57,9 +57,5 @@ rmix <- function (n, model, ...) {
   names(nn) <- NULL
   dat <- rdemmix(nn, distr, mu, sigma, dof, delta)
 
-  if (labels == TRUE) {
-    return(list(data = dat, labels = rep(1 : g, nn)))
-  } else {
-    return(dat)
-  }
+  dat
 }
