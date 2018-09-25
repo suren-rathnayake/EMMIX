@@ -14,31 +14,30 @@ bootstrap(x, model, B = 99, replace = TRUE, itmax = 1000,
 }
 \arguments{
 \item{x}{
-  The data in the form of a \eqn{n} by \eqn{p} numeric matrix,
-  where \eqn{n} is the number of observations and
-  \eqn{p} the dimension of data.
+ The data in the form of a \eqn{n} by \eqn{p} numeric matrix, where 
+ \eqn{n} is the number of observations and \eqn{p} the dimension of data.
 }
 \item{model}{
-  A list containing mixture model parameters.
+ A list containing mixture model parameters.
 }
 \item{B}{
-  The number of simulated data or replacements to be tried.
+ The number of simulated data or replacements to be tried.
 }
 \item{replace}{
-  A logical value indicating whether nonparametic (default), or
-  parametric bootstrap to be used.
+ A logical value indicating whether nonparametric (default), or
+ parametric bootstrap to be used.
 }
 \item{itmax}{
-  Maximum number of Expectation-Maximization steps to be used in model 
-  fitting.
+ Maximum number of Expectation-Maximization steps to be used in model 
+ fitting.
 }
 \item{epsilon}{
-  A numeric value to test the convergence of the Expectation-Maximization
-  algorithm. If the relative difference in log-likelihood between two
-  (consecutive) EM steps falls below this values, the EM steps terminates.
+ A numeric value to test the convergence of the Expectation-Maximization
+ algorithm. If the relative difference in log-likelihood between two
+ (consecutive) EM steps falls below this values, the EM steps terminates.
 }
 \item{...}{
-  not used.
+ not used.
 }
 }
 \details{
@@ -46,10 +45,10 @@ The \code{model} is a list that contains model parameters as returned by
 the \code{EMMIX} function. 
 
 When \code{replace = FALSE}, the parametric bootstrap is used;
-otherwise nonparametric boostrap (replacement method) is used.
+otherwise nonparametric bootstrap (replacement method) is used.
 }
 \value{
-Standard errors of mdodel parameters.
+Standard errors of model parameters.
 }
 \references{
 McLachlan G.J. and Krishnan T. (2008). The EM Algorithm and Extensions (2nd). New Jersay: Wiley.
@@ -62,11 +61,11 @@ set.seed(1729)
 # and then obtain the standard errors of model parameters
 fit <- EMMIX(iris[, -5], g = 2, distr = "mvn", ncov = 3,
               itmax = 100, epsilon = 0.00001)
-# do bootstrap (stadard error analysis)
+# do bootstrap (standard error analysis)
 ## Not run:
 std <- bootstrap(iris[, -5], fit, B = 19, replace = TRUE)
 
-# print the stadard errors after rounding to three decimal points
+# print the standard errors after rounding to three decimal points
 lapply(std, round, 3)
 # $se_pi
 #   pi1   pi2
